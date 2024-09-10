@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CategoryService } from './category.service';
 import { getModelToken } from '@nestjs/mongoose';
 import { Category } from './schema/category.schema';
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 import { NotFoundException } from '@nestjs/common';
 
 
@@ -21,12 +21,10 @@ describe('CategoryService', () => {
     mockCategory
   ];
 
-  // Mock the constructor and save method for the category model
   const mockCategoryModel: any = jest.fn().mockImplementation(() => ({
     save: jest.fn().mockResolvedValue(mockCategory),
   }));
 
-  // Mock static methods on the model
   mockCategoryModel.find = jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue(categoryArray) });
   mockCategoryModel.findById = jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue(mockCategory) });
   mockCategoryModel.findByIdAndUpdate = jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue(mockCategory) });
