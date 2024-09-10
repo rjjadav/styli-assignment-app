@@ -18,7 +18,7 @@ export class CategoryService {
     return await this.categoryModel.find().exec();
   }
 
-  async findOne(id: number) {
+  async findOne(id: any) {
     const category = await this.categoryModel.findById(id).exec();
     if (!category) {
       throw new NotFoundException('Category not found');
@@ -26,7 +26,7 @@ export class CategoryService {
     return category;
   }
 
-  async update(id: number, category: any) {
+  async update(id: any, category: any) {
     const updatedCategory = await this.categoryModel.findByIdAndUpdate(
       id,
       category,
@@ -40,7 +40,7 @@ export class CategoryService {
     return updatedCategory;
   }
 
-  async remove(id: number) {
+  async remove(id: any) {
     const deletedCategory = await this.categoryModel.findByIdAndDelete(id).exec();
 
     if (!deletedCategory) {
